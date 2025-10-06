@@ -3,7 +3,7 @@ WORKDIR /go/src/github.com/GBA-BI/tes-api
 COPY . .
 RUN make build-linux
 
-FROM debian11
+FROM debian:11
 RUN apt update \
      && apt install -y --no-install-recommends ca-certificates curl locales \
      && apt clean \
