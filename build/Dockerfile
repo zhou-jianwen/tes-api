@@ -12,5 +12,5 @@ ENV LANG=C.UTF-8
 RUN locale-gen
 USER nobody
 WORKDIR /app
-COPY --from=builder /go/src/github.com/GBA-BI/vetes-api/bin/vetes-api .
+COPY --from=builder /go/src/github.com/GBA-BI/tes-api/bin/vetes-api .
 ENTRYPOINT ["/app/vetes-api"]
