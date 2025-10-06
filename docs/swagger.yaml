@@ -1,0 +1,1149 @@
+basePath: /
+definitions:
+  context_cluster_interface_hertz_handlers.Capacity:
+    properties:
+      count:
+        type: integer
+      cpu_cores:
+        type: integer
+      disk_gb:
+        type: number
+      gpu_capacity:
+        $ref: '#/definitions/context_cluster_interface_hertz_handlers.GPUCapacity'
+      ram_gb:
+        description: nolint
+        type: number
+    type: object
+  context_cluster_interface_hertz_handlers.Cluster:
+    properties:
+      capacity:
+        $ref: '#/definitions/context_cluster_interface_hertz_handlers.Capacity'
+      heartbeat_timestamp:
+        type: string
+      id:
+        type: string
+      limits:
+        $ref: '#/definitions/context_cluster_interface_hertz_handlers.Limits'
+    type: object
+  context_cluster_interface_hertz_handlers.DeleteClusterResponse:
+    type: object
+  context_cluster_interface_hertz_handlers.GPUCapacity:
+    properties:
+      gpu:
+        additionalProperties:
+          type: number
+        type: object
+    type: object
+  context_cluster_interface_hertz_handlers.GPULimit:
+    properties:
+      gpu:
+        additionalProperties:
+          type: number
+        type: object
+    type: object
+  context_cluster_interface_hertz_handlers.Limits:
+    properties:
+      cpu_cores:
+        type: integer
+      gpu_limit:
+        $ref: '#/definitions/context_cluster_interface_hertz_handlers.GPULimit'
+      ram_gb:
+        description: nolint
+        type: number
+    type: object
+  context_cluster_interface_hertz_handlers.PutClusterRequest:
+    properties:
+      capacity:
+        $ref: '#/definitions/context_cluster_interface_hertz_handlers.Capacity'
+      limits:
+        $ref: '#/definitions/context_cluster_interface_hertz_handlers.Limits'
+    type: object
+  context_cluster_interface_hertz_handlers.PutClusterResponse:
+    type: object
+  context_extrapriority_interface_hertz_handlers.DeleteExtraPriorityResponse:
+    type: object
+  context_extrapriority_interface_hertz_handlers.ExtraPriority:
+    properties:
+      account_id:
+        type: string
+      extra_priority_value:
+        type: integer
+      run_id:
+        type: string
+      submission_id:
+        type: string
+      user_id:
+        type: string
+    type: object
+  context_extrapriority_interface_hertz_handlers.PutExtraPriorityRequest:
+    properties:
+      extra_priority_value:
+        type: integer
+    type: object
+  context_extrapriority_interface_hertz_handlers.PutExtraPriorityResponse:
+    type: object
+  context_quota_interface_hertz_handlers.DeleteQuotaResponse:
+    type: object
+  context_quota_interface_hertz_handlers.GPUQuota:
+    properties:
+      gpu:
+        additionalProperties:
+          type: number
+        type: object
+    type: object
+  context_quota_interface_hertz_handlers.GetQuotaResponse:
+    properties:
+      account_id:
+        type: string
+      default:
+        type: boolean
+      global:
+        type: boolean
+      resource_quota:
+        $ref: '#/definitions/context_quota_interface_hertz_handlers.ResourceQuota'
+      user_id:
+        type: string
+    type: object
+  context_quota_interface_hertz_handlers.PutQuotaRequest:
+    properties:
+      account_id:
+        type: string
+      global:
+        type: boolean
+      resource_quota:
+        $ref: '#/definitions/context_quota_interface_hertz_handlers.ResourceQuota'
+      user_id:
+        type: string
+    type: object
+  context_quota_interface_hertz_handlers.PutQuotaResponse:
+    type: object
+  context_quota_interface_hertz_handlers.ResourceQuota:
+    properties:
+      count:
+        type: integer
+      cpu_cores:
+        type: integer
+      disk_gb:
+        type: number
+      gpu_quota:
+        $ref: '#/definitions/context_quota_interface_hertz_handlers.GPUQuota'
+      ram_gb:
+        description: nolint
+        type: number
+    type: object
+  context_task_interface_hertz_handlers.AccountInfo:
+    properties:
+      account_id:
+        type: string
+      user_ids:
+        items:
+          type: string
+        type: array
+    type: object
+  context_task_interface_hertz_handlers.BioosInfo:
+    properties:
+      account_id:
+        type: string
+      meta:
+        $ref: '#/definitions/context_task_interface_hertz_handlers.BioosInfoMeta'
+      run_id:
+        type: string
+      submission_id:
+        type: string
+      user_id:
+        type: string
+    type: object
+  context_task_interface_hertz_handlers.BioosInfoMeta:
+    properties:
+      aai_passport:
+        type: string
+      buckets_auth_info:
+        $ref: '#/definitions/context_task_interface_hertz_handlers.BucketsAuthInfo'
+      mount_tos:
+        type: boolean
+    type: object
+  context_task_interface_hertz_handlers.BucketsAuthInfo:
+    properties:
+      external:
+        items:
+          $ref: '#/definitions/context_task_interface_hertz_handlers.ExternalBucketAuthInfo'
+        type: array
+      read_only:
+        items:
+          type: string
+        type: array
+      read_write:
+        items:
+          type: string
+        type: array
+    type: object
+  context_task_interface_hertz_handlers.CancelTaskResponse:
+    type: object
+  context_task_interface_hertz_handlers.CreateTaskRequest:
+    properties:
+      bioos_info:
+        $ref: '#/definitions/context_task_interface_hertz_handlers.BioosInfo'
+      description:
+        type: string
+      executors:
+        items:
+          $ref: '#/definitions/context_task_interface_hertz_handlers.Executor'
+        type: array
+      inputs:
+        items:
+          $ref: '#/definitions/context_task_interface_hertz_handlers.Input'
+        type: array
+      name:
+        type: string
+      outputs:
+        items:
+          $ref: '#/definitions/context_task_interface_hertz_handlers.Output'
+        type: array
+      priority_value:
+        type: integer
+      resources:
+        $ref: '#/definitions/context_task_interface_hertz_handlers.Resources'
+      tags:
+        additionalProperties:
+          type: string
+        type: object
+      volumes:
+        items:
+          type: string
+        type: array
+    type: object
+  context_task_interface_hertz_handlers.CreateTaskResponse:
+    properties:
+      id:
+        type: string
+    type: object
+  context_task_interface_hertz_handlers.Executor:
+    properties:
+      command:
+        items:
+          type: string
+        type: array
+      env:
+        additionalProperties:
+          type: string
+        type: object
+      image:
+        type: string
+      stderr:
+        type: string
+      stdin:
+        type: string
+      stdout:
+        type: string
+      workdir:
+        type: string
+    type: object
+  context_task_interface_hertz_handlers.ExecutorLog:
+    properties:
+      end_time:
+        type: string
+      executor_id:
+        type: string
+      start_time:
+        type: string
+    type: object
+  context_task_interface_hertz_handlers.ExternalBucketAuthInfo:
+    properties:
+      ak:
+        type: string
+      bucket:
+        type: string
+      sk:
+        type: string
+    type: object
+  context_task_interface_hertz_handlers.GPUResource:
+    properties:
+      count:
+        type: number
+      type:
+        type: string
+    type: object
+  context_task_interface_hertz_handlers.GatherTasksResourcesResponse:
+    properties:
+      count:
+        type: integer
+      cpu_cores:
+        type: integer
+      disk_gb:
+        type: number
+      gpu:
+        additionalProperties:
+          type: number
+        type: object
+      ram_gb:
+        description: nolint
+        type: number
+    type: object
+  context_task_interface_hertz_handlers.GetTaskResponse:
+    properties:
+      bioos_info:
+        $ref: '#/definitions/context_task_interface_hertz_handlers.BioosInfo'
+      cluster_id:
+        type: string
+      creation_time:
+        type: string
+      description:
+        type: string
+      executors:
+        items:
+          $ref: '#/definitions/context_task_interface_hertz_handlers.Executor'
+        type: array
+      id:
+        type: string
+      inputs:
+        items:
+          $ref: '#/definitions/context_task_interface_hertz_handlers.Input'
+        type: array
+      logs:
+        items:
+          $ref: '#/definitions/context_task_interface_hertz_handlers.TaskLog'
+        type: array
+      name:
+        type: string
+      outputs:
+        items:
+          $ref: '#/definitions/context_task_interface_hertz_handlers.Output'
+        type: array
+      priority_value:
+        type: integer
+      resources:
+        $ref: '#/definitions/context_task_interface_hertz_handlers.Resources'
+      state:
+        type: string
+      tags:
+        additionalProperties:
+          type: string
+        type: object
+      volumes:
+        items:
+          type: string
+        type: array
+    type: object
+  context_task_interface_hertz_handlers.Input:
+    properties:
+      content:
+        type: string
+      description:
+        type: string
+      name:
+        type: string
+      path:
+        type: string
+      type:
+        type: string
+      url:
+        type: string
+    type: object
+  context_task_interface_hertz_handlers.ListTasksAccountsResponse:
+    properties:
+      accounts:
+        items:
+          $ref: '#/definitions/context_task_interface_hertz_handlers.AccountInfo'
+        type: array
+    type: object
+  context_task_interface_hertz_handlers.ListTasksResponse:
+    properties:
+      next_page_token:
+        type: string
+      tasks:
+        items:
+          $ref: '#/definitions/context_task_interface_hertz_handlers.Task'
+        type: array
+    type: object
+  context_task_interface_hertz_handlers.Output:
+    properties:
+      description:
+        type: string
+      name:
+        type: string
+      path:
+        type: string
+      type:
+        type: string
+      url:
+        type: string
+    type: object
+  context_task_interface_hertz_handlers.Resources:
+    properties:
+      boot_disk_gb:
+        type: integer
+      cpu_cores:
+        type: integer
+      disk_gb:
+        type: number
+      gpu:
+        $ref: '#/definitions/context_task_interface_hertz_handlers.GPUResource'
+      ram_gb:
+        description: nolint
+        type: number
+    type: object
+  context_task_interface_hertz_handlers.Task:
+    properties:
+      bioos_info:
+        $ref: '#/definitions/context_task_interface_hertz_handlers.BioosInfo'
+      cluster_id:
+        type: string
+      creation_time:
+        type: string
+      description:
+        type: string
+      executors:
+        items:
+          $ref: '#/definitions/context_task_interface_hertz_handlers.Executor'
+        type: array
+      id:
+        type: string
+      inputs:
+        items:
+          $ref: '#/definitions/context_task_interface_hertz_handlers.Input'
+        type: array
+      logs:
+        items:
+          $ref: '#/definitions/context_task_interface_hertz_handlers.TaskLog'
+        type: array
+      name:
+        type: string
+      outputs:
+        items:
+          $ref: '#/definitions/context_task_interface_hertz_handlers.Output'
+        type: array
+      priority_value:
+        type: integer
+      resources:
+        $ref: '#/definitions/context_task_interface_hertz_handlers.Resources'
+      state:
+        type: string
+      tags:
+        additionalProperties:
+          type: string
+        type: object
+      volumes:
+        items:
+          type: string
+        type: array
+    type: object
+  context_task_interface_hertz_handlers.TaskLog:
+    properties:
+      cluster_id:
+        type: string
+      end_time:
+        type: string
+      logs:
+        items:
+          items:
+            $ref: '#/definitions/context_task_interface_hertz_handlers.ExecutorLog'
+          type: array
+        type: array
+      start_time:
+        type: string
+      system_logs:
+        items:
+          type: string
+        type: array
+    type: object
+  context_task_interface_hertz_handlers.UpdateTaskRequest:
+    properties:
+      cluster_id:
+        type: string
+      logs:
+        items:
+          $ref: '#/definitions/context_task_interface_hertz_handlers.TaskLog'
+        type: array
+      state:
+        type: string
+    type: object
+  context_task_interface_hertz_handlers.UpdateTaskResponse:
+    type: object
+  errors.AppError:
+    properties:
+      code:
+        type: integer
+      message:
+        type: string
+    type: object
+  serviceinfo.OrganizationInfo:
+    properties:
+      name:
+        type: string
+      url:
+        type: string
+    type: object
+  serviceinfo.ServiceInfo:
+    properties:
+      contactURL:
+        type: string
+      createdAt:
+        type: string
+      description:
+        type: string
+      documentationURL:
+        type: string
+      environment:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+      organization:
+        $ref: '#/definitions/serviceinfo.OrganizationInfo'
+      storage:
+        items:
+          type: string
+        type: array
+      type:
+        $ref: '#/definitions/serviceinfo.TypeInfo'
+      updatedAt:
+        type: string
+      version:
+        type: string
+    type: object
+  serviceinfo.TypeInfo:
+    properties:
+      artifact:
+        type: string
+      group:
+        type: string
+      version:
+        type: string
+    type: object
+  version.Info:
+    properties:
+      branch:
+        type: string
+      buildTime:
+        type: string
+      compiler:
+        type: string
+      gitCommit:
+        type: string
+      gitTreeState:
+        type: string
+      goVersion:
+        type: string
+      module:
+        type: string
+      platform:
+        type: string
+      version:
+        type: string
+    type: object
+info:
+  contact: {}
+  description: This is volcengine TES apiserver using Hertz.
+  title: volcengine TES apiserver
+  version: "1.0"
+paths:
+  /api/ga4gh/tes/v1/service-info:
+    get:
+      description: ga4gh service-info
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/serviceinfo.ServiceInfo'
+      summary: service-info
+  /api/ga4gh/tes/v1/tasks:
+    get:
+      description: list tasks
+      parameters:
+      - description: query name prefix
+        in: query
+        name: name_prefix
+        type: string
+      - default: 256
+        description: query page size
+        in: query
+        maximum: 2048
+        name: page_size
+        type: integer
+      - description: query page token
+        in: query
+        name: page_token
+        type: string
+      - default: MINIMAL
+        description: query view
+        enum:
+        - MINIMAL
+        - BASIC
+        - FULL
+        in: query
+        name: view
+        type: string
+      - collectionFormat: multi
+        description: query state array
+        in: query
+        items:
+          type: string
+        name: state
+        type: array
+      - description: query cluster id
+        in: query
+        name: cluster_id
+        type: string
+      - description: query without cluster
+        in: query
+        name: without_cluster
+        type: boolean
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/context_task_interface_hertz_handlers.ListTasksResponse'
+        "400":
+          description: invalid param
+          schema:
+            $ref: '#/definitions/errors.AppError'
+        "500":
+          description: internal system error
+          schema:
+            $ref: '#/definitions/errors.AppError'
+      summary: list tasks
+      tags:
+      - task
+    post:
+      consumes:
+      - application/json
+      description: create task
+      parameters:
+      - description: create task request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/context_task_interface_hertz_handlers.CreateTaskRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/context_task_interface_hertz_handlers.CreateTaskResponse'
+        "400":
+          description: invalid param
+          schema:
+            $ref: '#/definitions/errors.AppError'
+        "500":
+          description: internal system error
+          schema:
+            $ref: '#/definitions/errors.AppError'
+      summary: create task
+      tags:
+      - task
+  /api/ga4gh/tes/v1/tasks/{id}:
+    get:
+      description: get task by id
+      parameters:
+      - description: get task id
+        in: path
+        name: id
+        required: true
+        type: string
+      - default: MINIMAL
+        description: query view
+        enum:
+        - MINIMAL
+        - BASIC
+        - FULL
+        in: query
+        name: view
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/context_task_interface_hertz_handlers.GetTaskResponse'
+        "400":
+          description: invalid param
+          schema:
+            $ref: '#/definitions/errors.AppError'
+        "404":
+          description: not found
+          schema:
+            $ref: '#/definitions/errors.AppError'
+        "500":
+          description: internal system error
+          schema:
+            $ref: '#/definitions/errors.AppError'
+      summary: get task
+      tags:
+      - task
+  /api/ga4gh/tes/v1/tasks/{id}:cancel:
+    post:
+      description: cancel task by id
+      parameters:
+      - description: cancel task id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/context_task_interface_hertz_handlers.CancelTaskResponse'
+        "400":
+          description: invalid param or cannot execute
+          schema:
+            $ref: '#/definitions/errors.AppError'
+        "404":
+          description: not found
+          schema:
+            $ref: '#/definitions/errors.AppError'
+        "500":
+          description: internal system error
+          schema:
+            $ref: '#/definitions/errors.AppError'
+      summary: cancel task
+      tags:
+      - task
+  /api/v1/clusters:
+    get:
+      description: list clusters
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/context_cluster_interface_hertz_handlers.Cluster'
+            type: array
+        "400":
+          description: invalid param
+          schema:
+            $ref: '#/definitions/errors.AppError'
+        "500":
+          description: internal system error
+          schema:
+            $ref: '#/definitions/errors.AppError'
+      summary: list clusters
+      tags:
+      - cluster
+  /api/v1/clusters/{id}:
+    delete:
+      description: delete cluster
+      parameters:
+      - description: delete cluster id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/context_cluster_interface_hertz_handlers.DeleteClusterResponse'
+        "400":
+          description: invalid param
+          schema:
+            $ref: '#/definitions/errors.AppError'
+        "404":
+          description: not found
+          schema:
+            $ref: '#/definitions/errors.AppError'
+        "500":
+          description: internal system error
+          schema:
+            $ref: '#/definitions/errors.AppError'
+      summary: delete cluster
+      tags:
+      - cluster
+    put:
+      consumes:
+      - application/json
+      description: put cluster
+      parameters:
+      - description: put cluster id
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: put cluster request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/context_cluster_interface_hertz_handlers.PutClusterRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/context_cluster_interface_hertz_handlers.PutClusterResponse'
+        "400":
+          description: invalid param
+          schema:
+            $ref: '#/definitions/errors.AppError'
+        "500":
+          description: internal system error
+          schema:
+            $ref: '#/definitions/errors.AppError'
+      summary: put cluster
+      tags:
+      - cluster
+  /api/v1/extra_priority:
+    delete:
+      description: delete extra priority on tasks
+      parameters:
+      - description: query account id
+        in: query
+        name: account_id
+        type: string
+      - description: query user id
+        in: query
+        name: user_id
+        type: string
+      - description: query submission id
+        in: query
+        name: submission_id
+        type: string
+      - description: query run id
+        in: query
+        name: run_id
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/context_extrapriority_interface_hertz_handlers.DeleteExtraPriorityResponse'
+        "400":
+          description: invalid param
+          schema:
+            $ref: '#/definitions/errors.AppError'
+        "404":
+          description: not found
+          schema:
+            $ref: '#/definitions/errors.AppError'
+        "500":
+          description: internal system error
+          schema:
+            $ref: '#/definitions/errors.AppError'
+      summary: delete tasks extra priority
+      tags:
+      - priority
+    get:
+      description: list extra priority on tasks
+      parameters:
+      - description: query account id
+        in: query
+        name: account_id
+        type: string
+      - description: query submission id
+        in: query
+        name: submission_id
+        type: string
+      - description: query run id
+        in: query
+        name: run_id
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/context_extrapriority_interface_hertz_handlers.ExtraPriority'
+            type: array
+        "400":
+          description: invalid param
+          schema:
+            $ref: '#/definitions/errors.AppError'
+        "500":
+          description: internal system error
+          schema:
+            $ref: '#/definitions/errors.AppError'
+      summary: list tasks extra priority
+      tags:
+      - priority
+    put:
+      consumes:
+      - application/json
+      description: create or update extra priority on tasks
+      parameters:
+      - description: query account id
+        in: query
+        name: account_id
+        type: string
+      - description: query user id
+        in: query
+        name: user_id
+        type: string
+      - description: query submission id
+        in: query
+        name: submission_id
+        type: string
+      - description: query run id
+        in: query
+        name: run_id
+        type: string
+      - description: put tasks extra priority request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/context_extrapriority_interface_hertz_handlers.PutExtraPriorityRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/context_extrapriority_interface_hertz_handlers.PutExtraPriorityResponse'
+        "400":
+          description: invalid param
+          schema:
+            $ref: '#/definitions/errors.AppError'
+        "500":
+          description: internal system error
+          schema:
+            $ref: '#/definitions/errors.AppError'
+      summary: create or update tasks extra priority
+      tags:
+      - priority
+  /api/v1/quota:
+    delete:
+      description: delete quota
+      parameters:
+      - description: query global quota
+        in: query
+        name: global
+        type: boolean
+      - description: query account quota
+        in: query
+        name: account_id
+        type: string
+      - description: query user quota
+        in: query
+        name: user_id
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/context_quota_interface_hertz_handlers.DeleteQuotaResponse'
+        "400":
+          description: invalid param
+          schema:
+            $ref: '#/definitions/errors.AppError'
+        "404":
+          description: not found
+          schema:
+            $ref: '#/definitions/errors.AppError'
+        "500":
+          description: internal system error
+          schema:
+            $ref: '#/definitions/errors.AppError'
+      summary: delete quota
+      tags:
+      - quota
+    get:
+      description: get quota
+      parameters:
+      - description: query global quota
+        in: query
+        name: global
+        type: boolean
+      - description: query account quota
+        in: query
+        name: account_id
+        type: string
+      - description: query user quota
+        in: query
+        name: user_id
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/context_quota_interface_hertz_handlers.GetQuotaResponse'
+        "400":
+          description: invalid param
+          schema:
+            $ref: '#/definitions/errors.AppError'
+        "404":
+          description: not found
+          schema:
+            $ref: '#/definitions/errors.AppError'
+        "500":
+          description: internal system error
+          schema:
+            $ref: '#/definitions/errors.AppError'
+      summary: get quota
+      tags:
+      - quota
+    put:
+      consumes:
+      - application/json
+      description: put quota
+      parameters:
+      - description: put quota request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/context_quota_interface_hertz_handlers.PutQuotaRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/context_quota_interface_hertz_handlers.PutQuotaResponse'
+        "400":
+          description: invalid param
+          schema:
+            $ref: '#/definitions/errors.AppError'
+        "500":
+          description: internal system error
+          schema:
+            $ref: '#/definitions/errors.AppError'
+      summary: put quota
+      tags:
+      - quota
+  /api/v1/tasks/{id}:
+    patch:
+      consumes:
+      - application/json
+      description: update task by id
+      parameters:
+      - description: update task id
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: update task request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/context_task_interface_hertz_handlers.UpdateTaskRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/context_task_interface_hertz_handlers.UpdateTaskResponse'
+        "400":
+          description: invalid param or cannot execute
+          schema:
+            $ref: '#/definitions/errors.AppError'
+        "404":
+          description: not found
+          schema:
+            $ref: '#/definitions/errors.AppError'
+        "500":
+          description: internal system error
+          schema:
+            $ref: '#/definitions/errors.AppError'
+      summary: update task
+      tags:
+      - task
+  /api/v1/tasks/accounts:
+    get:
+      description: list tasks accounts
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/context_task_interface_hertz_handlers.ListTasksAccountsResponse'
+        "500":
+          description: internal system error
+          schema:
+            $ref: '#/definitions/errors.AppError'
+      summary: list tasks accounts
+      tags:
+      - task
+  /api/v1/tasks/resources:
+    get:
+      description: gather tasks resources
+      parameters:
+      - collectionFormat: multi
+        description: query state array
+        in: query
+        items:
+          type: string
+        name: state
+        type: array
+      - description: query cluster id
+        in: query
+        name: cluster_id
+        type: string
+      - description: query with cluster
+        in: query
+        name: with_cluster
+        type: boolean
+      - description: query account id
+        in: query
+        name: account_id
+        type: string
+      - description: query user id
+        in: query
+        name: user_id
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/context_task_interface_hertz_handlers.GatherTasksResourcesResponse'
+        "400":
+          description: invalid param
+          schema:
+            $ref: '#/definitions/errors.AppError'
+        "500":
+          description: internal system error
+          schema:
+            $ref: '#/definitions/errors.AppError'
+      summary: gather tasks resources
+      tags:
+      - task
+  /ping:
+    get:
+      description: ping
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      summary: ping
+  /version:
+    get:
+      description: version
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/version.Info'
+      summary: version
+schemes:
+- http
+swagger: "2.0"

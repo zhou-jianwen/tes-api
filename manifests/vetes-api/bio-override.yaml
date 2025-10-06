@@ -1,0 +1,50 @@
+releases:
+- name: vetes-api
+  namespace: {{ .Values.namespace }}
+  disableValidationOnInstall: true
+  installed: true
+  chart: {{ .Values.modulePath }}/vetes-api
+  wait: false
+  values:
+  - platformConfig:
+      imageRegistry: {{ .Values.registryDomain }}
+      imageRepositoryRelease: {{ .Values.registryRepository }}
+      imagePullSecret: {{ .Values.registrySecret }}
+    replicaCount: {{ default "2" .Values.customconfig.vetes.api.replicaCount }}
+    resources:
+      requests:
+        cpu: {{ .Values.customconfig.vetes.api.resources.requests.cpu }}
+        memory: {{ .Values.customconfig.vetes.api.resources.requests.memory }}
+      limits:
+        cpu: {{ .Values.customconfig.vetes.api.resources.limits.cpu }}
+        memory: {{ .Values.customconfig.vetes.api.resources.limits.memory }}
+    autoscaling:
+      enabled: {{ .Values.customconfig.vetes.api.autoscaling.enabled }}
+      minReplicas: {{ .Values.customconfig.vetes.api.autoscaling.minReplicas }}
+      maxReplicas: {{ .Values.customconfig.vetes.api.autoscaling.maxReplicas }}
+      targetCPUUtilizationPercentage: {{ .Values.customconfig.vetes.api.autoscaling.targetCPUUtilizationPercentage }}
+      targetMemoryUtilizationPercentage: {{ .Values.customconfig.vetes.api.autoscaling.targetMemoryUtilizationPercentage }}
+    prometheus:
+      labels:
+        bio2s-monitor: compute
+    db:
+      type: mysql
+      mysql:
+        username: {{ .Values.customconfig.vetes.api.db.mysql.username }}
+        password: {{ .Values.customconfig.vetes.api.db.mysql.password | quote }}
+        host: {{ .Values.mysql.endpoint }}
+        port: {{ .Values.mysql.port }}
+        database: {{ .Values.customconfig.vetes.api.db.mysql.database }}
+    normalize:
+      diskGB:
+        enable: {{ .Values.customconfig.vetes.api.normalize.diskGB.enable }}
+        min: {{ .Values.customconfig.vetes.api.normalize.diskGB.min }}
+        max: {{ .Values.customconfig.vetes.api.normalize.diskGB.max }}
+        isInteger: {{ .Values.customconfig.vetes.api.normalize.diskGB.isInteger }}
+      bootDiskGB:
+        enable: {{ .Values.customconfig.vetes.api.normalize.bootDiskGB.enable }}
+        min: {{ .Values.customconfig.vetes.api.normalize.bootDiskGB.min }}
+        max: {{ .Values.customconfig.vetes.api.normalize.bootDiskGB.max }}
+      gpu:
+        enable: {{ .Values.customconfig.vetes.api.normalize.gpu.enable }}
+        isInteger: {{ .Values.customconfig.vetes.api.normalize.gpu.isInteger }}

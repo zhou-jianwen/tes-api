@@ -1,0 +1,1746 @@
+{
+    "schemes": [
+        "http"
+    ],
+    "swagger": "2.0",
+    "info": {
+        "description": "This is volcengine TES apiserver using Hertz.",
+        "title": "volcengine TES apiserver",
+        "contact": {},
+        "version": "1.0"
+    },
+    "basePath": "/",
+    "paths": {
+        "/api/ga4gh/tes/v1/service-info": {
+            "get": {
+                "description": "ga4gh service-info",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "service-info",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/serviceinfo.ServiceInfo"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/ga4gh/tes/v1/tasks": {
+            "get": {
+                "description": "list tasks",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "task"
+                ],
+                "summary": "list tasks",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "query name prefix",
+                        "name": "name_prefix",
+                        "in": "query"
+                    },
+                    {
+                        "maximum": 2048,
+                        "type": "integer",
+                        "default": 256,
+                        "description": "query page size",
+                        "name": "page_size",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "query page token",
+                        "name": "page_token",
+                        "in": "query"
+                    },
+                    {
+                        "enum": [
+                            "MINIMAL",
+                            "BASIC",
+                            "FULL"
+                        ],
+                        "type": "string",
+                        "default": "MINIMAL",
+                        "description": "query view",
+                        "name": "view",
+                        "in": "query"
+                    },
+                    {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "collectionFormat": "multi",
+                        "description": "query state array",
+                        "name": "state",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "query cluster id",
+                        "name": "cluster_id",
+                        "in": "query"
+                    },
+                    {
+                        "type": "boolean",
+                        "description": "query without cluster",
+                        "name": "without_cluster",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/context_task_interface_hertz_handlers.ListTasksResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "invalid param",
+                        "schema": {
+                            "$ref": "#/definitions/errors.AppError"
+                        }
+                    },
+                    "500": {
+                        "description": "internal system error",
+                        "schema": {
+                            "$ref": "#/definitions/errors.AppError"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "create task",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "task"
+                ],
+                "summary": "create task",
+                "parameters": [
+                    {
+                        "description": "create task request",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/context_task_interface_hertz_handlers.CreateTaskRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/context_task_interface_hertz_handlers.CreateTaskResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "invalid param",
+                        "schema": {
+                            "$ref": "#/definitions/errors.AppError"
+                        }
+                    },
+                    "500": {
+                        "description": "internal system error",
+                        "schema": {
+                            "$ref": "#/definitions/errors.AppError"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/ga4gh/tes/v1/tasks/{id}": {
+            "get": {
+                "description": "get task by id",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "task"
+                ],
+                "summary": "get task",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "get task id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "enum": [
+                            "MINIMAL",
+                            "BASIC",
+                            "FULL"
+                        ],
+                        "type": "string",
+                        "default": "MINIMAL",
+                        "description": "query view",
+                        "name": "view",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/context_task_interface_hertz_handlers.GetTaskResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "invalid param",
+                        "schema": {
+                            "$ref": "#/definitions/errors.AppError"
+                        }
+                    },
+                    "404": {
+                        "description": "not found",
+                        "schema": {
+                            "$ref": "#/definitions/errors.AppError"
+                        }
+                    },
+                    "500": {
+                        "description": "internal system error",
+                        "schema": {
+                            "$ref": "#/definitions/errors.AppError"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/ga4gh/tes/v1/tasks/{id}:cancel": {
+            "post": {
+                "description": "cancel task by id",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "task"
+                ],
+                "summary": "cancel task",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "cancel task id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/context_task_interface_hertz_handlers.CancelTaskResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "invalid param or cannot execute",
+                        "schema": {
+                            "$ref": "#/definitions/errors.AppError"
+                        }
+                    },
+                    "404": {
+                        "description": "not found",
+                        "schema": {
+                            "$ref": "#/definitions/errors.AppError"
+                        }
+                    },
+                    "500": {
+                        "description": "internal system error",
+                        "schema": {
+                            "$ref": "#/definitions/errors.AppError"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/clusters": {
+            "get": {
+                "description": "list clusters",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "cluster"
+                ],
+                "summary": "list clusters",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/context_cluster_interface_hertz_handlers.Cluster"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "invalid param",
+                        "schema": {
+                            "$ref": "#/definitions/errors.AppError"
+                        }
+                    },
+                    "500": {
+                        "description": "internal system error",
+                        "schema": {
+                            "$ref": "#/definitions/errors.AppError"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/clusters/{id}": {
+            "put": {
+                "description": "put cluster",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "cluster"
+                ],
+                "summary": "put cluster",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "put cluster id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "put cluster request",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/context_cluster_interface_hertz_handlers.PutClusterRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/context_cluster_interface_hertz_handlers.PutClusterResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "invalid param",
+                        "schema": {
+                            "$ref": "#/definitions/errors.AppError"
+                        }
+                    },
+                    "500": {
+                        "description": "internal system error",
+                        "schema": {
+                            "$ref": "#/definitions/errors.AppError"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "delete cluster",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "cluster"
+                ],
+                "summary": "delete cluster",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "delete cluster id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/context_cluster_interface_hertz_handlers.DeleteClusterResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "invalid param",
+                        "schema": {
+                            "$ref": "#/definitions/errors.AppError"
+                        }
+                    },
+                    "404": {
+                        "description": "not found",
+                        "schema": {
+                            "$ref": "#/definitions/errors.AppError"
+                        }
+                    },
+                    "500": {
+                        "description": "internal system error",
+                        "schema": {
+                            "$ref": "#/definitions/errors.AppError"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/extra_priority": {
+            "get": {
+                "description": "list extra priority on tasks",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "priority"
+                ],
+                "summary": "list tasks extra priority",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "query account id",
+                        "name": "account_id",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "query submission id",
+                        "name": "submission_id",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "query run id",
+                        "name": "run_id",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/context_extrapriority_interface_hertz_handlers.ExtraPriority"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "invalid param",
+                        "schema": {
+                            "$ref": "#/definitions/errors.AppError"
+                        }
+                    },
+                    "500": {
+                        "description": "internal system error",
+                        "schema": {
+                            "$ref": "#/definitions/errors.AppError"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "create or update extra priority on tasks",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "priority"
+                ],
+                "summary": "create or update tasks extra priority",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "query account id",
+                        "name": "account_id",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "query user id",
+                        "name": "user_id",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "query submission id",
+                        "name": "submission_id",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "query run id",
+                        "name": "run_id",
+                        "in": "query"
+                    },
+                    {
+                        "description": "put tasks extra priority request",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/context_extrapriority_interface_hertz_handlers.PutExtraPriorityRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/context_extrapriority_interface_hertz_handlers.PutExtraPriorityResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "invalid param",
+                        "schema": {
+                            "$ref": "#/definitions/errors.AppError"
+                        }
+                    },
+                    "500": {
+                        "description": "internal system error",
+                        "schema": {
+                            "$ref": "#/definitions/errors.AppError"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "delete extra priority on tasks",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "priority"
+                ],
+                "summary": "delete tasks extra priority",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "query account id",
+                        "name": "account_id",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "query user id",
+                        "name": "user_id",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "query submission id",
+                        "name": "submission_id",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "query run id",
+                        "name": "run_id",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/context_extrapriority_interface_hertz_handlers.DeleteExtraPriorityResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "invalid param",
+                        "schema": {
+                            "$ref": "#/definitions/errors.AppError"
+                        }
+                    },
+                    "404": {
+                        "description": "not found",
+                        "schema": {
+                            "$ref": "#/definitions/errors.AppError"
+                        }
+                    },
+                    "500": {
+                        "description": "internal system error",
+                        "schema": {
+                            "$ref": "#/definitions/errors.AppError"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/quota": {
+            "get": {
+                "description": "get quota",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "quota"
+                ],
+                "summary": "get quota",
+                "parameters": [
+                    {
+                        "type": "boolean",
+                        "description": "query global quota",
+                        "name": "global",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "query account quota",
+                        "name": "account_id",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "query user quota",
+                        "name": "user_id",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/context_quota_interface_hertz_handlers.GetQuotaResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "invalid param",
+                        "schema": {
+                            "$ref": "#/definitions/errors.AppError"
+                        }
+                    },
+                    "404": {
+                        "description": "not found",
+                        "schema": {
+                            "$ref": "#/definitions/errors.AppError"
+                        }
+                    },
+                    "500": {
+                        "description": "internal system error",
+                        "schema": {
+                            "$ref": "#/definitions/errors.AppError"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "put quota",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "quota"
+                ],
+                "summary": "put quota",
+                "parameters": [
+                    {
+                        "description": "put quota request",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/context_quota_interface_hertz_handlers.PutQuotaRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/context_quota_interface_hertz_handlers.PutQuotaResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "invalid param",
+                        "schema": {
+                            "$ref": "#/definitions/errors.AppError"
+                        }
+                    },
+                    "500": {
+                        "description": "internal system error",
+                        "schema": {
+                            "$ref": "#/definitions/errors.AppError"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "delete quota",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "quota"
+                ],
+                "summary": "delete quota",
+                "parameters": [
+                    {
+                        "type": "boolean",
+                        "description": "query global quota",
+                        "name": "global",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "query account quota",
+                        "name": "account_id",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "query user quota",
+                        "name": "user_id",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/context_quota_interface_hertz_handlers.DeleteQuotaResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "invalid param",
+                        "schema": {
+                            "$ref": "#/definitions/errors.AppError"
+                        }
+                    },
+                    "404": {
+                        "description": "not found",
+                        "schema": {
+                            "$ref": "#/definitions/errors.AppError"
+                        }
+                    },
+                    "500": {
+                        "description": "internal system error",
+                        "schema": {
+                            "$ref": "#/definitions/errors.AppError"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/tasks/accounts": {
+            "get": {
+                "description": "list tasks accounts",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "task"
+                ],
+                "summary": "list tasks accounts",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/context_task_interface_hertz_handlers.ListTasksAccountsResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "internal system error",
+                        "schema": {
+                            "$ref": "#/definitions/errors.AppError"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/tasks/resources": {
+            "get": {
+                "description": "gather tasks resources",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "task"
+                ],
+                "summary": "gather tasks resources",
+                "parameters": [
+                    {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "collectionFormat": "multi",
+                        "description": "query state array",
+                        "name": "state",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "query cluster id",
+                        "name": "cluster_id",
+                        "in": "query"
+                    },
+                    {
+                        "type": "boolean",
+                        "description": "query with cluster",
+                        "name": "with_cluster",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "query account id",
+                        "name": "account_id",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "query user id",
+                        "name": "user_id",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/context_task_interface_hertz_handlers.GatherTasksResourcesResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "invalid param",
+                        "schema": {
+                            "$ref": "#/definitions/errors.AppError"
+                        }
+                    },
+                    "500": {
+                        "description": "internal system error",
+                        "schema": {
+                            "$ref": "#/definitions/errors.AppError"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/tasks/{id}": {
+            "patch": {
+                "description": "update task by id",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "task"
+                ],
+                "summary": "update task",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "update task id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "update task request",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/context_task_interface_hertz_handlers.UpdateTaskRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/context_task_interface_hertz_handlers.UpdateTaskResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "invalid param or cannot execute",
+                        "schema": {
+                            "$ref": "#/definitions/errors.AppError"
+                        }
+                    },
+                    "404": {
+                        "description": "not found",
+                        "schema": {
+                            "$ref": "#/definitions/errors.AppError"
+                        }
+                    },
+                    "500": {
+                        "description": "internal system error",
+                        "schema": {
+                            "$ref": "#/definitions/errors.AppError"
+                        }
+                    }
+                }
+            }
+        },
+        "/ping": {
+            "get": {
+                "description": "ping",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "ping",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/version": {
+            "get": {
+                "description": "version",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "version",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/version.Info"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "context_cluster_interface_hertz_handlers.Capacity": {
+            "type": "object",
+            "properties": {
+                "count": {
+                    "type": "integer"
+                },
+                "cpu_cores": {
+                    "type": "integer"
+                },
+                "disk_gb": {
+                    "type": "number"
+                },
+                "gpu_capacity": {
+                    "$ref": "#/definitions/context_cluster_interface_hertz_handlers.GPUCapacity"
+                },
+                "ram_gb": {
+                    "description": "nolint",
+                    "type": "number"
+                }
+            }
+        },
+        "context_cluster_interface_hertz_handlers.Cluster": {
+            "type": "object",
+            "properties": {
+                "capacity": {
+                    "$ref": "#/definitions/context_cluster_interface_hertz_handlers.Capacity"
+                },
+                "heartbeat_timestamp": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "limits": {
+                    "$ref": "#/definitions/context_cluster_interface_hertz_handlers.Limits"
+                }
+            }
+        },
+        "context_cluster_interface_hertz_handlers.DeleteClusterResponse": {
+            "type": "object"
+        },
+        "context_cluster_interface_hertz_handlers.GPUCapacity": {
+            "type": "object",
+            "properties": {
+                "gpu": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "number"
+                    }
+                }
+            }
+        },
+        "context_cluster_interface_hertz_handlers.GPULimit": {
+            "type": "object",
+            "properties": {
+                "gpu": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "number"
+                    }
+                }
+            }
+        },
+        "context_cluster_interface_hertz_handlers.Limits": {
+            "type": "object",
+            "properties": {
+                "cpu_cores": {
+                    "type": "integer"
+                },
+                "gpu_limit": {
+                    "$ref": "#/definitions/context_cluster_interface_hertz_handlers.GPULimit"
+                },
+                "ram_gb": {
+                    "description": "nolint",
+                    "type": "number"
+                }
+            }
+        },
+        "context_cluster_interface_hertz_handlers.PutClusterRequest": {
+            "type": "object",
+            "properties": {
+                "capacity": {
+                    "$ref": "#/definitions/context_cluster_interface_hertz_handlers.Capacity"
+                },
+                "limits": {
+                    "$ref": "#/definitions/context_cluster_interface_hertz_handlers.Limits"
+                }
+            }
+        },
+        "context_cluster_interface_hertz_handlers.PutClusterResponse": {
+            "type": "object"
+        },
+        "context_extrapriority_interface_hertz_handlers.DeleteExtraPriorityResponse": {
+            "type": "object"
+        },
+        "context_extrapriority_interface_hertz_handlers.ExtraPriority": {
+            "type": "object",
+            "properties": {
+                "account_id": {
+                    "type": "string"
+                },
+                "extra_priority_value": {
+                    "type": "integer"
+                },
+                "run_id": {
+                    "type": "string"
+                },
+                "submission_id": {
+                    "type": "string"
+                },
+                "user_id": {
+                    "type": "string"
+                }
+            }
+        },
+        "context_extrapriority_interface_hertz_handlers.PutExtraPriorityRequest": {
+            "type": "object",
+            "properties": {
+                "extra_priority_value": {
+                    "type": "integer"
+                }
+            }
+        },
+        "context_extrapriority_interface_hertz_handlers.PutExtraPriorityResponse": {
+            "type": "object"
+        },
+        "context_quota_interface_hertz_handlers.DeleteQuotaResponse": {
+            "type": "object"
+        },
+        "context_quota_interface_hertz_handlers.GPUQuota": {
+            "type": "object",
+            "properties": {
+                "gpu": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "number"
+                    }
+                }
+            }
+        },
+        "context_quota_interface_hertz_handlers.GetQuotaResponse": {
+            "type": "object",
+            "properties": {
+                "account_id": {
+                    "type": "string"
+                },
+                "default": {
+                    "type": "boolean"
+                },
+                "global": {
+                    "type": "boolean"
+                },
+                "resource_quota": {
+                    "$ref": "#/definitions/context_quota_interface_hertz_handlers.ResourceQuota"
+                },
+                "user_id": {
+                    "type": "string"
+                }
+            }
+        },
+        "context_quota_interface_hertz_handlers.PutQuotaRequest": {
+            "type": "object",
+            "properties": {
+                "account_id": {
+                    "type": "string"
+                },
+                "global": {
+                    "type": "boolean"
+                },
+                "resource_quota": {
+                    "$ref": "#/definitions/context_quota_interface_hertz_handlers.ResourceQuota"
+                },
+                "user_id": {
+                    "type": "string"
+                }
+            }
+        },
+        "context_quota_interface_hertz_handlers.PutQuotaResponse": {
+            "type": "object"
+        },
+        "context_quota_interface_hertz_handlers.ResourceQuota": {
+            "type": "object",
+            "properties": {
+                "count": {
+                    "type": "integer"
+                },
+                "cpu_cores": {
+                    "type": "integer"
+                },
+                "disk_gb": {
+                    "type": "number"
+                },
+                "gpu_quota": {
+                    "$ref": "#/definitions/context_quota_interface_hertz_handlers.GPUQuota"
+                },
+                "ram_gb": {
+                    "description": "nolint",
+                    "type": "number"
+                }
+            }
+        },
+        "context_task_interface_hertz_handlers.AccountInfo": {
+            "type": "object",
+            "properties": {
+                "account_id": {
+                    "type": "string"
+                },
+                "user_ids": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "context_task_interface_hertz_handlers.BioosInfo": {
+            "type": "object",
+            "properties": {
+                "account_id": {
+                    "type": "string"
+                },
+                "meta": {
+                    "$ref": "#/definitions/context_task_interface_hertz_handlers.BioosInfoMeta"
+                },
+                "run_id": {
+                    "type": "string"
+                },
+                "submission_id": {
+                    "type": "string"
+                },
+                "user_id": {
+                    "type": "string"
+                }
+            }
+        },
+        "context_task_interface_hertz_handlers.BioosInfoMeta": {
+            "type": "object",
+            "properties": {
+                "aai_passport": {
+                    "type": "string"
+                },
+                "buckets_auth_info": {
+                    "$ref": "#/definitions/context_task_interface_hertz_handlers.BucketsAuthInfo"
+                },
+                "mount_tos": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "context_task_interface_hertz_handlers.BucketsAuthInfo": {
+            "type": "object",
+            "properties": {
+                "external": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/context_task_interface_hertz_handlers.ExternalBucketAuthInfo"
+                    }
+                },
+                "read_only": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "read_write": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "context_task_interface_hertz_handlers.CancelTaskResponse": {
+            "type": "object"
+        },
+        "context_task_interface_hertz_handlers.CreateTaskRequest": {
+            "type": "object",
+            "properties": {
+                "bioos_info": {
+                    "$ref": "#/definitions/context_task_interface_hertz_handlers.BioosInfo"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "executors": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/context_task_interface_hertz_handlers.Executor"
+                    }
+                },
+                "inputs": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/context_task_interface_hertz_handlers.Input"
+                    }
+                },
+                "name": {
+                    "type": "string"
+                },
+                "outputs": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/context_task_interface_hertz_handlers.Output"
+                    }
+                },
+                "priority_value": {
+                    "type": "integer"
+                },
+                "resources": {
+                    "$ref": "#/definitions/context_task_interface_hertz_handlers.Resources"
+                },
+                "tags": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    }
+                },
+                "volumes": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "context_task_interface_hertz_handlers.CreateTaskResponse": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                }
+            }
+        },
+        "context_task_interface_hertz_handlers.Executor": {
+            "type": "object",
+            "properties": {
+                "command": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "env": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    }
+                },
+                "image": {
+                    "type": "string"
+                },
+                "stderr": {
+                    "type": "string"
+                },
+                "stdin": {
+                    "type": "string"
+                },
+                "stdout": {
+                    "type": "string"
+                },
+                "workdir": {
+                    "type": "string"
+                }
+            }
+        },
+        "context_task_interface_hertz_handlers.ExecutorLog": {
+            "type": "object",
+            "properties": {
+                "end_time": {
+                    "type": "string"
+                },
+                "executor_id": {
+                    "type": "string"
+                },
+                "start_time": {
+                    "type": "string"
+                }
+            }
+        },
+        "context_task_interface_hertz_handlers.ExternalBucketAuthInfo": {
+            "type": "object",
+            "properties": {
+                "ak": {
+                    "type": "string"
+                },
+                "bucket": {
+                    "type": "string"
+                },
+                "sk": {
+                    "type": "string"
+                }
+            }
+        },
+        "context_task_interface_hertz_handlers.GPUResource": {
+            "type": "object",
+            "properties": {
+                "count": {
+                    "type": "number"
+                },
+                "type": {
+                    "type": "string"
+                }
+            }
+        },
+        "context_task_interface_hertz_handlers.GatherTasksResourcesResponse": {
+            "type": "object",
+            "properties": {
+                "count": {
+                    "type": "integer"
+                },
+                "cpu_cores": {
+                    "type": "integer"
+                },
+                "disk_gb": {
+                    "type": "number"
+                },
+                "gpu": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "number"
+                    }
+                },
+                "ram_gb": {
+                    "description": "nolint",
+                    "type": "number"
+                }
+            }
+        },
+        "context_task_interface_hertz_handlers.GetTaskResponse": {
+            "type": "object",
+            "properties": {
+                "bioos_info": {
+                    "$ref": "#/definitions/context_task_interface_hertz_handlers.BioosInfo"
+                },
+                "cluster_id": {
+                    "type": "string"
+                },
+                "creation_time": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "executors": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/context_task_interface_hertz_handlers.Executor"
+                    }
+                },
+                "id": {
+                    "type": "string"
+                },
+                "inputs": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/context_task_interface_hertz_handlers.Input"
+                    }
+                },
+                "logs": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/context_task_interface_hertz_handlers.TaskLog"
+                    }
+                },
+                "name": {
+                    "type": "string"
+                },
+                "outputs": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/context_task_interface_hertz_handlers.Output"
+                    }
+                },
+                "priority_value": {
+                    "type": "integer"
+                },
+                "resources": {
+                    "$ref": "#/definitions/context_task_interface_hertz_handlers.Resources"
+                },
+                "state": {
+                    "type": "string"
+                },
+                "tags": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    }
+                },
+                "volumes": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "context_task_interface_hertz_handlers.Input": {
+            "type": "object",
+            "properties": {
+                "content": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "path": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "url": {
+                    "type": "string"
+                }
+            }
+        },
+        "context_task_interface_hertz_handlers.ListTasksAccountsResponse": {
+            "type": "object",
+            "properties": {
+                "accounts": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/context_task_interface_hertz_handlers.AccountInfo"
+                    }
+                }
+            }
+        },
+        "context_task_interface_hertz_handlers.ListTasksResponse": {
+            "type": "object",
+            "properties": {
+                "next_page_token": {
+                    "type": "string"
+                },
+                "tasks": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/context_task_interface_hertz_handlers.Task"
+                    }
+                }
+            }
+        },
+        "context_task_interface_hertz_handlers.Output": {
+            "type": "object",
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "path": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "url": {
+                    "type": "string"
+                }
+            }
+        },
+        "context_task_interface_hertz_handlers.Resources": {
+            "type": "object",
+            "properties": {
+                "boot_disk_gb": {
+                    "type": "integer"
+                },
+                "cpu_cores": {
+                    "type": "integer"
+                },
+                "disk_gb": {
+                    "type": "number"
+                },
+                "gpu": {
+                    "$ref": "#/definitions/context_task_interface_hertz_handlers.GPUResource"
+                },
+                "ram_gb": {
+                    "description": "nolint",
+                    "type": "number"
+                }
+            }
+        },
+        "context_task_interface_hertz_handlers.Task": {
+            "type": "object",
+            "properties": {
+                "bioos_info": {
+                    "$ref": "#/definitions/context_task_interface_hertz_handlers.BioosInfo"
+                },
+                "cluster_id": {
+                    "type": "string"
+                },
+                "creation_time": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "executors": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/context_task_interface_hertz_handlers.Executor"
+                    }
+                },
+                "id": {
+                    "type": "string"
+                },
+                "inputs": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/context_task_interface_hertz_handlers.Input"
+                    }
+                },
+                "logs": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/context_task_interface_hertz_handlers.TaskLog"
+                    }
+                },
+                "name": {
+                    "type": "string"
+                },
+                "outputs": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/context_task_interface_hertz_handlers.Output"
+                    }
+                },
+                "priority_value": {
+                    "type": "integer"
+                },
+                "resources": {
+                    "$ref": "#/definitions/context_task_interface_hertz_handlers.Resources"
+                },
+                "state": {
+                    "type": "string"
+                },
+                "tags": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    }
+                },
+                "volumes": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "context_task_interface_hertz_handlers.TaskLog": {
+            "type": "object",
+            "properties": {
+                "cluster_id": {
+                    "type": "string"
+                },
+                "end_time": {
+                    "type": "string"
+                },
+                "logs": {
+                    "type": "array",
+                    "items": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/definitions/context_task_interface_hertz_handlers.ExecutorLog"
+                        }
+                    }
+                },
+                "start_time": {
+                    "type": "string"
+                },
+                "system_logs": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "context_task_interface_hertz_handlers.UpdateTaskRequest": {
+            "type": "object",
+            "properties": {
+                "cluster_id": {
+                    "type": "string"
+                },
+                "logs": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/context_task_interface_hertz_handlers.TaskLog"
+                    }
+                },
+                "state": {
+                    "type": "string"
+                }
+            }
+        },
+        "context_task_interface_hertz_handlers.UpdateTaskResponse": {
+            "type": "object"
+        },
+        "errors.AppError": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                }
+            }
+        },
+        "serviceinfo.OrganizationInfo": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "url": {
+                    "type": "string"
+                }
+            }
+        },
+        "serviceinfo.ServiceInfo": {
+            "type": "object",
+            "properties": {
+                "contactURL": {
+                    "type": "string"
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "documentationURL": {
+                    "type": "string"
+                },
+                "environment": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "organization": {
+                    "$ref": "#/definitions/serviceinfo.OrganizationInfo"
+                },
+                "storage": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "type": {
+                    "$ref": "#/definitions/serviceinfo.TypeInfo"
+                },
+                "updatedAt": {
+                    "type": "string"
+                },
+                "version": {
+                    "type": "string"
+                }
+            }
+        },
+        "serviceinfo.TypeInfo": {
+            "type": "object",
+            "properties": {
+                "artifact": {
+                    "type": "string"
+                },
+                "group": {
+                    "type": "string"
+                },
+                "version": {
+                    "type": "string"
+                }
+            }
+        },
+        "version.Info": {
+            "type": "object",
+            "properties": {
+                "branch": {
+                    "type": "string"
+                },
+                "buildTime": {
+                    "type": "string"
+                },
+                "compiler": {
+                    "type": "string"
+                },
+                "gitCommit": {
+                    "type": "string"
+                },
+                "gitTreeState": {
+                    "type": "string"
+                },
+                "goVersion": {
+                    "type": "string"
+                },
+                "module": {
+                    "type": "string"
+                },
+                "platform": {
+                    "type": "string"
+                },
+                "version": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

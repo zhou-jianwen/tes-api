@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "vetes-api.fullname" . }}
+  labels:
+    {{- include "vetes-api.labels" . | nindent 4 }}
+data:
+  config.yaml: |
+    server:
+      http:
+        port: {{ .Values.service.port | int }}
+        metricsPort: {{ .Values.service.metricsPort | int }}
+    db:
+      type: {{ .Values.db.type }}
+      {{- if eq .Values.db.type "mysql" }}
+      mysql:
+        username: ""
+        password: ""
+        host: {{ .Values.db.mysql.host }}
+        port: {{ .Values.db.mysql.port | int }}
+        database: {{ .Values.db.mysql.database }}
+      {{- end }}
+    log:
+      level: {{ .Values.log.level }}
+      output-path: {{ .Values.log.outputPath }}
+    normalize:
+      executorBasePath: {{ .Values.normalize.executorBasePath }}
+      diskGB:
+        enable: {{ .Values.normalize.diskGB.enable }}
+        min:  {{ .Values.normalize.diskGB.min }}
+        max: {{ .Values.normalize.diskGB.max }}
+        isInteger: {{ .Values.normalize.diskGB.isInteger }}
+      bootDiskGB:
+        enable: {{ .Values.normalize.bootDiskGB.enable }}
+        min: {{ .Values.normalize.bootDiskGB.min }}
+        max: {{ .Values.normalize.bootDiskGB.max }}
+      gpu:
+        enable: {{ .Values.normalize.gpu.enable }}
+        isInteger: {{ .Values.normalize.gpu.isInteger }}

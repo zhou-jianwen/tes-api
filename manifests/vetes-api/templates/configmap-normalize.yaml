@@ -1,0 +1,10 @@
+{{- if .Values.normalize.resources.enable }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "vetes-api.normalizeName" . }}
+  labels:
+    {{- include "vetes-api.labels" . | nindent 4 }}
+data:
+{{ (.Files.Glob "normalize/*").AsConfig | indent 2 }}
+{{- end }}
