@@ -1,9 +1,9 @@
-FROM hub.byted.org/infcplibrary/golang:1.20.5-bullseye-auth AS builder
-WORKDIR /go/src/code.byted.org/epscp/vetes-api
+FROM golang:1.20.5 AS builder
+WORKDIR /go/src/github.com/GBA-BI/tes-api
 COPY . .
 RUN make build-linux
 
-FROM hub.byted.org/base/security.debian11:latest
+FROM debian11
 RUN apt update \
      && apt install -y --no-install-recommends ca-certificates curl locales \
      && apt clean \
@@ -12,5 +12,5 @@ ENV LANG=C.UTF-8
 RUN locale-gen
 USER nobody
 WORKDIR /app
-COPY --from=builder /go/src/code.byted.org/epscp/vetes-api/bin/vetes-api .
+COPY --from=builder /go/src/github.com/GBA-BI/vetes-api/bin/vetes-api .
 ENTRYPOINT ["/app/vetes-api"]
