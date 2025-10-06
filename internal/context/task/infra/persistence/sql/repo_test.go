@@ -9,11 +9,11 @@ import (
 	"github.com/DATA-DOG/go-sqlmock"
 	"github.com/onsi/gomega"
 
-	"code.byted.org/epscp/vetes-api/internal/context/task/domain"
-	"code.byted.org/epscp/vetes-api/pkg/consts"
-	apperrors "code.byted.org/epscp/vetes-api/pkg/errors"
-	"code.byted.org/epscp/vetes-api/pkg/testutil"
-	"code.byted.org/epscp/vetes-api/pkg/utils"
+	"github.com/GBA-BI/tes-api/internal/context/task/domain"
+	"github.com/GBA-BI/tes-api/pkg/consts"
+	apperrors "github.com/GBA-BI/tes-api/pkg/errors"
+	"github.com/GBA-BI/tes-api/pkg/testutil"
+	"github.com/GBA-BI/tes-api/pkg/utils"
 )
 
 var id = "task-1234"

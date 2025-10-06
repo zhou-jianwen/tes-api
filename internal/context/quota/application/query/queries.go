@@ -1,6 +1,6 @@
 package query
 
-import "code.byted.org/epscp/vetes-api/internal/context/quota/domain"
+import "github.com/GBA-BI/tes-api/internal/context/quota/domain"
 
 // Queries ...
 type Queries struct {

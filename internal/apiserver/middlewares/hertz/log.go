@@ -9,11 +9,11 @@ import (
 	"regexp"
 	"time"
 
-	applog "code.byted.org/epscp/go-common/log"
+	applog "github.com/GBA-BI/tes-api/pkg/log"
 	"github.com/cloudwego/hertz/pkg/app"
 	"github.com/hertz-contrib/requestid"
 
-	"code.byted.org/epscp/vetes-api/pkg/consts"
+	"github.com/GBA-BI/tes-api/pkg/consts"
 )
 
 // Logger log middleware for hertz.

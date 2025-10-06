@@ -3,7 +3,7 @@ package query
 import (
 	"context"
 
-	apperrors "code.byted.org/epscp/vetes-api/pkg/errors"
+	apperrors "github.com/GBA-BI/tes-api/pkg/errors"
 )
 
 // ListQuery ...

@@ -1,8 +1,8 @@
 package handlers
 
 import (
-	"code.byted.org/epscp/vetes-api/internal/context/extrapriority/application/command"
-	"code.byted.org/epscp/vetes-api/internal/context/extrapriority/application/query"
+	"github.com/GBA-BI/tes-api/internal/context/extrapriority/application/command"
+	"github.com/GBA-BI/tes-api/internal/context/extrapriority/application/query"
 )
 
 func (r *PutExtraPriorityRequest) toDTO() *command.PutCommand {

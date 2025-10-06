@@ -3,13 +3,13 @@ package handlers
 import (
 	"context"
 
-	applog "code.byted.org/epscp/go-common/log"
+	applog "github.com/GBA-BI/tes-api/pkg/log"
 	"github.com/cloudwego/hertz/pkg/app"
 
-	"code.byted.org/epscp/vetes-api/internal/context/cluster/application/command"
-	"code.byted.org/epscp/vetes-api/internal/context/cluster/application/query"
-	apperrors "code.byted.org/epscp/vetes-api/pkg/errors"
-	"code.byted.org/epscp/vetes-api/pkg/utils"
+	"github.com/GBA-BI/tes-api/internal/context/cluster/application/command"
+	"github.com/GBA-BI/tes-api/internal/context/cluster/application/query"
+	apperrors "github.com/GBA-BI/tes-api/pkg/errors"
+	"github.com/GBA-BI/tes-api/pkg/utils"
 )
 
 // PutCluster reports cluster info

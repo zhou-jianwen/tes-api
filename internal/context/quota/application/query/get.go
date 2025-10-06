@@ -3,8 +3,8 @@ package query
 import (
 	"context"
 
-	"code.byted.org/epscp/vetes-api/internal/context/quota/domain"
-	"code.byted.org/epscp/vetes-api/pkg/validator"
+	"github.com/GBA-BI/tes-api/internal/context/quota/domain"
+	"github.com/GBA-BI/tes-api/pkg/validator"
 )
 
 // GetQuery ...

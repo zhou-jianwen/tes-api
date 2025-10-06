@@ -4,10 +4,10 @@ import (
 	"math"
 	"strings"
 
-	applog "code.byted.org/epscp/go-common/log"
+	applog "github.com/GBA-BI/tes-api/pkg/log"
 
-	"code.byted.org/epscp/vetes-api/internal/context/task/domain"
-	apperrors "code.byted.org/epscp/vetes-api/pkg/errors"
+	"github.com/GBA-BI/tes-api/internal/context/task/domain"
+	apperrors "github.com/GBA-BI/tes-api/pkg/errors"
 )
 
 // normalizer ...

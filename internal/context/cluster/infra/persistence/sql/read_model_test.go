@@ -7,9 +7,9 @@ import (
 	"github.com/DATA-DOG/go-sqlmock"
 	"github.com/onsi/gomega"
 
-	"code.byted.org/epscp/vetes-api/internal/context/cluster/application/query"
-	"code.byted.org/epscp/vetes-api/pkg/testutil"
-	"code.byted.org/epscp/vetes-api/pkg/utils"
+	"github.com/GBA-BI/tes-api/internal/context/cluster/application/query"
+	"github.com/GBA-BI/tes-api/pkg/testutil"
+	"github.com/GBA-BI/tes-api/pkg/utils"
 )
 
 var clusterDTO = &query.Cluster{

@@ -1,6 +1,6 @@
 package serviceinfo
 
-import "code.byted.org/epscp/vetes-api/pkg/version"
+import "github.com/GBA-BI/tes-api/pkg/version"
 
 // DefaultServiceInfo ...
 var DefaultServiceInfo = ServiceInfo{

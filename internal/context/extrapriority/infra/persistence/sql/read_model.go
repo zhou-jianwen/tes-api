@@ -3,11 +3,11 @@ package sql
 import (
 	"context"
 
-	applog "code.byted.org/epscp/go-common/log"
+	applog "github.com/GBA-BI/tes-api/pkg/log"
 	"gorm.io/gorm"
 
-	"code.byted.org/epscp/vetes-api/internal/context/extrapriority/application/query"
-	apperrors "code.byted.org/epscp/vetes-api/pkg/errors"
+	"github.com/GBA-BI/tes-api/internal/context/extrapriority/application/query"
+	apperrors "github.com/GBA-BI/tes-api/pkg/errors"
 )
 
 type readModel struct {

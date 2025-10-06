@@ -8,9 +8,9 @@ import (
 	"github.com/DATA-DOG/go-sqlmock"
 	"github.com/onsi/gomega"
 
-	"code.byted.org/epscp/vetes-api/internal/context/extrapriority/domain"
-	apperrors "code.byted.org/epscp/vetes-api/pkg/errors"
-	"code.byted.org/epscp/vetes-api/pkg/testutil"
+	"github.com/GBA-BI/tes-api/internal/context/extrapriority/domain"
+	apperrors "github.com/GBA-BI/tes-api/pkg/errors"
+	"github.com/GBA-BI/tes-api/pkg/testutil"
 )
 
 var id = "ac1/u1/sb1/r1"

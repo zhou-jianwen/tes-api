@@ -3,8 +3,8 @@ package query
 import (
 	"context"
 
-	apperrors "code.byted.org/epscp/vetes-api/pkg/errors"
-	"code.byted.org/epscp/vetes-api/pkg/validator"
+	apperrors "github.com/GBA-BI/tes-api/pkg/errors"
+	"github.com/GBA-BI/tes-api/pkg/validator"
 )
 
 // GatherQuery ...

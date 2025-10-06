@@ -3,10 +3,10 @@ package query
 import (
 	"context"
 
-	"code.byted.org/epscp/vetes-api/pkg/consts"
-	apperrors "code.byted.org/epscp/vetes-api/pkg/errors"
-	"code.byted.org/epscp/vetes-api/pkg/utils"
-	"code.byted.org/epscp/vetes-api/pkg/validator"
+	"github.com/GBA-BI/tes-api/pkg/consts"
+	apperrors "github.com/GBA-BI/tes-api/pkg/errors"
+	"github.com/GBA-BI/tes-api/pkg/utils"
+	"github.com/GBA-BI/tes-api/pkg/validator"
 )
 
 const defaultPageSize = 256

@@ -7,7 +7,7 @@ import (
 	"github.com/golang/mock/gomock"
 	"github.com/onsi/gomega"
 
-	"code.byted.org/epscp/vetes-api/pkg/consts"
+	"github.com/GBA-BI/tes-api/pkg/consts"
 )
 
 func TestGetMinimal(t *testing.T) {

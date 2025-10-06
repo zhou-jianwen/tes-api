@@ -4,9 +4,9 @@ import (
 	"encoding/base64"
 	"encoding/json"
 
-	applog "code.byted.org/epscp/go-common/log"
+	applog "github.com/GBA-BI/tes-api/pkg/log"
 
-	apperrors "code.byted.org/epscp/vetes-api/pkg/errors"
+	apperrors "github.com/GBA-BI/tes-api/pkg/errors"
 )
 
 // PageToken ...

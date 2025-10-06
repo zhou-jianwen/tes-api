@@ -3,22 +3,22 @@ package apiserver
 import (
 	"context"
 
-	applog "code.byted.org/epscp/go-common/log"
+	applog "github.com/GBA-BI/tes-api/pkg/log"
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
 
-	_ "code.byted.org/epscp/vetes-api/docs" // for swagger
-	"code.byted.org/epscp/vetes-api/internal/apiserver/options"
-	clusterapp "code.byted.org/epscp/vetes-api/internal/context/cluster/application"
-	clusterhertz "code.byted.org/epscp/vetes-api/internal/context/cluster/interface/hertz"
-	extrapriorityapp "code.byted.org/epscp/vetes-api/internal/context/extrapriority/application"
-	extrapriorityhertz "code.byted.org/epscp/vetes-api/internal/context/extrapriority/interface/hertz"
-	quotaapp "code.byted.org/epscp/vetes-api/internal/context/quota/application"
-	quotahertz "code.byted.org/epscp/vetes-api/internal/context/quota/interface/hertz"
-	taskapp "code.byted.org/epscp/vetes-api/internal/context/task/application"
-	taskhertz "code.byted.org/epscp/vetes-api/internal/context/task/interface/hertz"
-	"code.byted.org/epscp/vetes-api/pkg/version"
-	"code.byted.org/epscp/vetes-api/pkg/viper"
+	_ "github.com/GBA-BI/tes-api/docs" // for swagger
+	"github.com/GBA-BI/tes-api/internal/apiserver/options"
+	clusterapp "github.com/GBA-BI/tes-api/internal/context/cluster/application"
+	clusterhertz "github.com/GBA-BI/tes-api/internal/context/cluster/interface/hertz"
+	extrapriorityapp "github.com/GBA-BI/tes-api/internal/context/extrapriority/application"
+	extrapriorityhertz "github.com/GBA-BI/tes-api/internal/context/extrapriority/interface/hertz"
+	quotaapp "github.com/GBA-BI/tes-api/internal/context/quota/application"
+	quotahertz "github.com/GBA-BI/tes-api/internal/context/quota/interface/hertz"
+	taskapp "github.com/GBA-BI/tes-api/internal/context/task/application"
+	taskhertz "github.com/GBA-BI/tes-api/internal/context/task/interface/hertz"
+	"github.com/GBA-BI/tes-api/pkg/version"
+	"github.com/GBA-BI/tes-api/pkg/viper"
 )
 
 const (

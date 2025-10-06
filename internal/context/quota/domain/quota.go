@@ -3,8 +3,8 @@ package domain
 import (
 	"fmt"
 
-	"code.byted.org/epscp/vetes-api/pkg/consts"
-	apperrors "code.byted.org/epscp/vetes-api/pkg/errors"
+	"github.com/GBA-BI/tes-api/pkg/consts"
+	apperrors "github.com/GBA-BI/tes-api/pkg/errors"
 )
 
 // NewQuotaID ...

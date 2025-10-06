@@ -6,13 +6,13 @@ import (
 
 	"gorm.io/gorm"
 
-	"code.byted.org/epscp/vetes-api/internal/apiserver/options"
-	"code.byted.org/epscp/vetes-api/internal/context/task/application/command"
-	"code.byted.org/epscp/vetes-api/internal/context/task/application/query"
-	"code.byted.org/epscp/vetes-api/internal/context/task/domain"
-	"code.byted.org/epscp/vetes-api/internal/context/task/infra/normalize"
-	"code.byted.org/epscp/vetes-api/internal/context/task/infra/persistence/sql"
-	"code.byted.org/epscp/vetes-api/pkg/consts"
+	"github.com/GBA-BI/tes-api/internal/apiserver/options"
+	"github.com/GBA-BI/tes-api/internal/context/task/application/command"
+	"github.com/GBA-BI/tes-api/internal/context/task/application/query"
+	"github.com/GBA-BI/tes-api/internal/context/task/domain"
+	"github.com/GBA-BI/tes-api/internal/context/task/infra/normalize"
+	"github.com/GBA-BI/tes-api/internal/context/task/infra/persistence/sql"
+	"github.com/GBA-BI/tes-api/pkg/consts"
 )
 
 // TaskService ...

@@ -7,8 +7,8 @@ import (
 	"github.com/golang/mock/gomock"
 	"github.com/onsi/gomega"
 
-	"code.byted.org/epscp/vetes-api/internal/context/cluster/domain"
-	"code.byted.org/epscp/vetes-api/pkg/utils"
+	"github.com/GBA-BI/tes-api/internal/context/cluster/domain"
+	"github.com/GBA-BI/tes-api/pkg/utils"
 )
 
 func TestPut(t *testing.T) {

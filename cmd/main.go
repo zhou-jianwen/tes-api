@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"os"
 
-	"code.byted.org/epscp/vetes-api/internal/apiserver"
-	"code.byted.org/epscp/vetes-api/third_party/forked/sigs.k8s.io/controller-runtime/pkg/manager/signals"
+	"github.com/GBA-BI/tes-api/internal/apiserver"
+	"github.com/GBA-BI/tes-api/third_party/forked/sigs.k8s.io/controller-runtime/pkg/manager/signals"
 )
 
 //	@title			volcengine TES apiserver

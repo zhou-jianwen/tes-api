@@ -6,12 +6,12 @@ import (
 
 	"gorm.io/gorm"
 
-	"code.byted.org/epscp/vetes-api/internal/apiserver/options"
-	"code.byted.org/epscp/vetes-api/internal/context/quota/application/command"
-	"code.byted.org/epscp/vetes-api/internal/context/quota/application/query"
-	"code.byted.org/epscp/vetes-api/internal/context/quota/domain"
-	"code.byted.org/epscp/vetes-api/internal/context/quota/infra/persistence/sql"
-	"code.byted.org/epscp/vetes-api/pkg/consts"
+	"github.com/GBA-BI/tes-api/internal/apiserver/options"
+	"github.com/GBA-BI/tes-api/internal/context/quota/application/command"
+	"github.com/GBA-BI/tes-api/internal/context/quota/application/query"
+	"github.com/GBA-BI/tes-api/internal/context/quota/domain"
+	"github.com/GBA-BI/tes-api/internal/context/quota/infra/persistence/sql"
+	"github.com/GBA-BI/tes-api/pkg/consts"
 )
 
 // QuotaService ...

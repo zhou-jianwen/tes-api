@@ -7,9 +7,9 @@ import (
 	"github.com/golang/mock/gomock"
 	"github.com/onsi/gomega"
 
-	"code.byted.org/epscp/vetes-api/internal/context/quota/domain"
-	"code.byted.org/epscp/vetes-api/pkg/consts"
-	"code.byted.org/epscp/vetes-api/pkg/utils"
+	"github.com/GBA-BI/tes-api/internal/context/quota/domain"
+	"github.com/GBA-BI/tes-api/pkg/consts"
+	"github.com/GBA-BI/tes-api/pkg/utils"
 )
 
 func TestGet(t *testing.T) {

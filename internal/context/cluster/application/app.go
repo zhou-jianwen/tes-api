@@ -6,12 +6,12 @@ import (
 
 	"gorm.io/gorm"
 
-	"code.byted.org/epscp/vetes-api/internal/apiserver/options"
-	"code.byted.org/epscp/vetes-api/internal/context/cluster/application/command"
-	"code.byted.org/epscp/vetes-api/internal/context/cluster/application/query"
-	"code.byted.org/epscp/vetes-api/internal/context/cluster/domain"
-	"code.byted.org/epscp/vetes-api/internal/context/cluster/infra/persistence/sql"
-	"code.byted.org/epscp/vetes-api/pkg/consts"
+	"github.com/GBA-BI/tes-api/internal/apiserver/options"
+	"github.com/GBA-BI/tes-api/internal/context/cluster/application/command"
+	"github.com/GBA-BI/tes-api/internal/context/cluster/application/query"
+	"github.com/GBA-BI/tes-api/internal/context/cluster/domain"
+	"github.com/GBA-BI/tes-api/internal/context/cluster/infra/persistence/sql"
+	"github.com/GBA-BI/tes-api/pkg/consts"
 )
 
 // ClusterService ...

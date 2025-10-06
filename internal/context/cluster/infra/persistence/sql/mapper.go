@@ -1,8 +1,8 @@
 package sql
 
 import (
-	"code.byted.org/epscp/vetes-api/internal/context/cluster/application/query"
-	"code.byted.org/epscp/vetes-api/internal/context/cluster/domain"
+	"github.com/GBA-BI/tes-api/internal/context/cluster/application/query"
+	"github.com/GBA-BI/tes-api/internal/context/cluster/domain"
 )
 
 func (c *Cluster) toDTO() *query.Cluster {

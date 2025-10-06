@@ -3,7 +3,7 @@ package query
 import (
 	"context"
 
-	"code.byted.org/epscp/vetes-api/pkg/validator"
+	"github.com/GBA-BI/tes-api/pkg/validator"
 )
 
 // ListQuery ...

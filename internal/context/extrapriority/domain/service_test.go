@@ -7,7 +7,7 @@ import (
 	"github.com/golang/mock/gomock"
 	"github.com/onsi/gomega"
 
-	apperrors "code.byted.org/epscp/vetes-api/pkg/errors"
+	apperrors "github.com/GBA-BI/tes-api/pkg/errors"
 )
 
 func TestPut(t *testing.T) {

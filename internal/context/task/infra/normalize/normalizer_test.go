@@ -5,8 +5,8 @@ import (
 
 	"github.com/onsi/gomega"
 
-	"code.byted.org/epscp/vetes-api/internal/context/task/domain"
-	"code.byted.org/epscp/vetes-api/pkg/utils"
+	"github.com/GBA-BI/tes-api/internal/context/task/domain"
+	"github.com/GBA-BI/tes-api/pkg/utils"
 )
 
 func TestNormalizeCheckPath(t *testing.T) {

@@ -4,8 +4,8 @@ import (
 	"context"
 	"time"
 
-	"code.byted.org/epscp/vetes-api/internal/context/cluster/domain"
-	"code.byted.org/epscp/vetes-api/pkg/validator"
+	"github.com/GBA-BI/tes-api/internal/context/cluster/domain"
+	"github.com/GBA-BI/tes-api/pkg/validator"
 )
 
 // PutCommand ...

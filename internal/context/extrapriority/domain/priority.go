@@ -3,7 +3,7 @@ package domain
 import (
 	"fmt"
 
-	apperrors "code.byted.org/epscp/vetes-api/pkg/errors"
+	apperrors "github.com/GBA-BI/tes-api/pkg/errors"
 )
 
 // ExtraPriority ...

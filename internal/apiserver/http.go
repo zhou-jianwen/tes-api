@@ -14,13 +14,13 @@ import (
 	"github.com/hertz-contrib/swagger"
 	swaggerfiles "github.com/swaggo/files"
 
-	"code.byted.org/epscp/vetes-api/internal/apiserver/middlewares/hertz"
-	"code.byted.org/epscp/vetes-api/pkg/consts"
-	apperrors "code.byted.org/epscp/vetes-api/pkg/errors"
-	appserver "code.byted.org/epscp/vetes-api/pkg/server"
-	"code.byted.org/epscp/vetes-api/pkg/serviceinfo"
-	"code.byted.org/epscp/vetes-api/pkg/utils"
-	"code.byted.org/epscp/vetes-api/pkg/version"
+	"github.com/GBA-BI/tes-api/internal/apiserver/middlewares/hertz"
+	"github.com/GBA-BI/tes-api/pkg/consts"
+	apperrors "github.com/GBA-BI/tes-api/pkg/errors"
+	appserver "github.com/GBA-BI/tes-api/pkg/server"
+	"github.com/GBA-BI/tes-api/pkg/serviceinfo"
+	"github.com/GBA-BI/tes-api/pkg/utils"
+	"github.com/GBA-BI/tes-api/pkg/version"
 )
 
 func setupHTTPServer(opts *appserver.HTTPOptions, registers ...appserver.RouteRegister) *server.Hertz {

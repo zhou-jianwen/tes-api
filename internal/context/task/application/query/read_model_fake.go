@@ -8,7 +8,7 @@ import (
 	context "context"
 	reflect "reflect"
 
-	utils "code.byted.org/epscp/vetes-api/pkg/utils"
+	utils "github.com/GBA-BI/tes-api/pkg/utils"
 	gomock "github.com/golang/mock/gomock"
 )
 

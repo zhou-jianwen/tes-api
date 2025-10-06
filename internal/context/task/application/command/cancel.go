@@ -3,8 +3,8 @@ package command
 import (
 	"context"
 
-	"code.byted.org/epscp/vetes-api/internal/context/task/domain"
-	"code.byted.org/epscp/vetes-api/pkg/validator"
+	"github.com/GBA-BI/tes-api/internal/context/task/domain"
+	"github.com/GBA-BI/tes-api/pkg/validator"
 )
 
 // CancelCommand ...

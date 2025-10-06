@@ -3,8 +3,8 @@ package handlers
 import (
 	"time"
 
-	"code.byted.org/epscp/vetes-api/internal/context/cluster/application/command"
-	"code.byted.org/epscp/vetes-api/internal/context/cluster/application/query"
+	"github.com/GBA-BI/tes-api/internal/context/cluster/application/command"
+	"github.com/GBA-BI/tes-api/internal/context/cluster/application/query"
 )
 
 func (r *PutClusterRequest) toDTO() *command.PutCommand {

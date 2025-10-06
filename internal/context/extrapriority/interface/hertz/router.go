@@ -6,10 +6,10 @@ import (
 	"github.com/cloudwego/hertz/pkg/app"
 	"github.com/cloudwego/hertz/pkg/route"
 
-	"code.byted.org/epscp/vetes-api/internal/context/extrapriority/application"
-	"code.byted.org/epscp/vetes-api/internal/context/extrapriority/interface/hertz/handlers"
-	"code.byted.org/epscp/vetes-api/pkg/consts"
-	appserver "code.byted.org/epscp/vetes-api/pkg/server"
+	"github.com/GBA-BI/tes-api/internal/context/extrapriority/application"
+	"github.com/GBA-BI/tes-api/internal/context/extrapriority/interface/hertz/handlers"
+	"github.com/GBA-BI/tes-api/pkg/consts"
+	appserver "github.com/GBA-BI/tes-api/pkg/server"
 )
 
 type register struct {

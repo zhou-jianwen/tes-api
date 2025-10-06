@@ -6,12 +6,12 @@ import (
 
 	"gorm.io/gorm"
 
-	"code.byted.org/epscp/vetes-api/internal/apiserver/options"
-	"code.byted.org/epscp/vetes-api/internal/context/extrapriority/application/command"
-	"code.byted.org/epscp/vetes-api/internal/context/extrapriority/application/query"
-	"code.byted.org/epscp/vetes-api/internal/context/extrapriority/domain"
-	"code.byted.org/epscp/vetes-api/internal/context/extrapriority/infra/persistence/sql"
-	"code.byted.org/epscp/vetes-api/pkg/consts"
+	"github.com/GBA-BI/tes-api/internal/apiserver/options"
+	"github.com/GBA-BI/tes-api/internal/context/extrapriority/application/command"
+	"github.com/GBA-BI/tes-api/internal/context/extrapriority/application/query"
+	"github.com/GBA-BI/tes-api/internal/context/extrapriority/domain"
+	"github.com/GBA-BI/tes-api/internal/context/extrapriority/infra/persistence/sql"
+	"github.com/GBA-BI/tes-api/pkg/consts"
 )
 
 // ExtraPriorityService ...

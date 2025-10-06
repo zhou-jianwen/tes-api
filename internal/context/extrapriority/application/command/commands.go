@@ -1,7 +1,7 @@
 package command
 
 import (
-	"code.byted.org/epscp/vetes-api/internal/context/extrapriority/domain"
+	"github.com/GBA-BI/tes-api/internal/context/extrapriority/domain"
 )
 
 // Commands ...

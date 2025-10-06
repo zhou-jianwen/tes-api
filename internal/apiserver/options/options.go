@@ -3,11 +3,11 @@ package options
 import (
 	"github.com/spf13/pflag"
 
-	"code.byted.org/epscp/go-common/log"
+	"github.com/GBA-BI/tes-api/pkg/log"
 
-	"code.byted.org/epscp/vetes-api/internal/context/task/infra/normalize"
-	"code.byted.org/epscp/vetes-api/pkg/db"
-	"code.byted.org/epscp/vetes-api/pkg/server"
+	"github.com/GBA-BI/tes-api/internal/context/task/infra/normalize"
+	"github.com/GBA-BI/tes-api/pkg/db"
+	"github.com/GBA-BI/tes-api/pkg/server"
 )
 
 // Options ...

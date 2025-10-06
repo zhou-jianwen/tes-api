@@ -1,6 +1,6 @@
 package command
 
-import "code.byted.org/epscp/vetes-api/internal/context/cluster/domain"
+import "github.com/GBA-BI/tes-api/internal/context/cluster/domain"
 
 // Commands ...
 type Commands struct {

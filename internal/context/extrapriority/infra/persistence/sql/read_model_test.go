@@ -7,8 +7,8 @@ import (
 	"github.com/DATA-DOG/go-sqlmock"
 	"github.com/onsi/gomega"
 
-	"code.byted.org/epscp/vetes-api/internal/context/extrapriority/application/query"
-	"code.byted.org/epscp/vetes-api/pkg/testutil"
+	"github.com/GBA-BI/tes-api/internal/context/extrapriority/application/query"
+	"github.com/GBA-BI/tes-api/pkg/testutil"
 )
 
 var priorityDTO = &query.ExtraPriority{

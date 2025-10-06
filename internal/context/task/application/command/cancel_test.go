@@ -7,7 +7,7 @@ import (
 	"github.com/golang/mock/gomock"
 	"github.com/onsi/gomega"
 
-	"code.byted.org/epscp/vetes-api/internal/context/task/domain"
+	"github.com/GBA-BI/tes-api/internal/context/task/domain"
 )
 
 func TestCancel(t *testing.T) {

@@ -5,7 +5,7 @@ import (
 
 	"github.com/spf13/pflag"
 
-	"code.byted.org/epscp/vetes-api/pkg/consts"
+	"github.com/GBA-BI/tes-api/pkg/consts"
 )
 
 // Options ...

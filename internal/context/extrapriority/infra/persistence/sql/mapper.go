@@ -1,8 +1,8 @@
 package sql
 
 import (
-	"code.byted.org/epscp/vetes-api/internal/context/extrapriority/application/query"
-	"code.byted.org/epscp/vetes-api/internal/context/extrapriority/domain"
+	"github.com/GBA-BI/tes-api/internal/context/extrapriority/application/query"
+	"github.com/GBA-BI/tes-api/internal/context/extrapriority/domain"
 )
 
 func (e *ExtraPriority) toDTO() *query.ExtraPriority {

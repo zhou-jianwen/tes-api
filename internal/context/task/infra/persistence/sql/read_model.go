@@ -5,12 +5,12 @@ import (
 	"errors"
 	"fmt"
 
-	applog "code.byted.org/epscp/go-common/log"
+	applog "github.com/GBA-BI/tes-api/pkg/log"
 	"gorm.io/gorm"
 
-	"code.byted.org/epscp/vetes-api/internal/context/task/application/query"
-	apperrors "code.byted.org/epscp/vetes-api/pkg/errors"
-	"code.byted.org/epscp/vetes-api/pkg/utils"
+	"github.com/GBA-BI/tes-api/internal/context/task/application/query"
+	apperrors "github.com/GBA-BI/tes-api/pkg/errors"
+	"github.com/GBA-BI/tes-api/pkg/utils"
 )
 
 type readModel struct {

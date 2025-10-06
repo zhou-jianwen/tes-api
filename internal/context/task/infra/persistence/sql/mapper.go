@@ -1,8 +1,8 @@
 package sql
 
 import (
-	"code.byted.org/epscp/vetes-api/internal/context/task/application/query"
-	"code.byted.org/epscp/vetes-api/internal/context/task/domain"
+	"github.com/GBA-BI/tes-api/internal/context/task/application/query"
+	"github.com/GBA-BI/tes-api/internal/context/task/domain"
 )
 
 func (t *TaskState) toDTO() *query.TaskMinimal {

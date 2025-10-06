@@ -4,10 +4,10 @@ import (
 	"errors"
 	"net/http"
 
-	applog "code.byted.org/epscp/go-common/log"
+	applog "github.com/GBA-BI/tes-api/pkg/log"
 	"github.com/cloudwego/hertz/pkg/app"
 
-	apperrors "code.byted.org/epscp/vetes-api/pkg/errors"
+	apperrors "github.com/GBA-BI/tes-api/pkg/errors"
 )
 
 // WriteHertzErrorResponse for error response.
